@@ -6,6 +6,6 @@ public interface ScoreBoard {
 
     boolean startGame(String homeTeam, String awayTeam);
     void updateGame(String homeTeam, String awayTeam, int homeTeamPoints, int awayTeamPoints);
-    void finishGame(String homeTeam, String awayTeam);
+    Game finishGame(String homeTeam, String awayTeam);
     Collection<Game> getActiveGames();
 }

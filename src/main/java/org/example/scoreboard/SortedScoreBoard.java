@@ -34,8 +34,13 @@ public class SortedScoreBoard implements ScoreBoard{
     }
 
     @Override
-    public void finishGame(String homeTeam, String awayTeam) {
-        activeGames.remove(Game.ofTeams(homeTeam, awayTeam));
+    public Game finishGame(String homeTeam, String awayTeam) {
+        Game toRemoved = activeGames.stream()
+                .filter(game -> game.equals(Game.ofTeams(homeTeam, awayTeam)))
+                .findAny()
+                .orElseThrow();
+        activeGames.remove(toRemoved);
+        return toRemoved;
     }
 
     public String summary() {
