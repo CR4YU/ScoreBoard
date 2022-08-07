@@ -26,6 +26,11 @@ public class Game {
         return awayTeamPoints;
     }
 
+    void setPoints(int homeTeamPoints, int awayTeamPoints) {
+        this.homeTeamPoints = homeTeamPoints;
+        this.awayTeamPoints = awayTeamPoints;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
