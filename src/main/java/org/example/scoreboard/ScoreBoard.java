@@ -6,9 +6,13 @@ import java.util.List;
 
 public class ScoreBoard {
 
-    private final List activeGames;
+    private final List<Game> activeGames;
 
     public ScoreBoard() {
         activeGames = Lists.newArrayList();
+    }
+
+    public List<Game> getActiveGames() {
+        return activeGames;
     }
 }
