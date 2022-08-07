@@ -39,7 +39,13 @@ public class SortedScoreBoard implements ScoreBoard{
     }
 
     public String summary() {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        int i = 1;
+        for (Game game : sortedGames()) {
+            sb.append(String.format("%d. %s %d - %s %d\n",
+                    i++, game.getHomeTeam(), game.getHomeTeamPoints(), game.getAwayTeam(), game.getAwayTeamPoints()));
+        }
+        return sb.toString();
     }
 
     private LinkedHashSet<Game> sortedGames() {

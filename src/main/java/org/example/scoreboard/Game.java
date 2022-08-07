@@ -18,6 +18,14 @@ public class Game {
         return new Game(homeTeam, awayTeam);
     }
 
+    public String getHomeTeam() {
+        return homeTeam;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
+    }
+
     public int getHomeTeamPoints() {
         return homeTeamPoints;
     }
