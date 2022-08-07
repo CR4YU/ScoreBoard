@@ -65,18 +65,20 @@ class SortedScoreBoardSpec extends Specification {
         thrown NoSuchElementException
     }
 
-    def "Finish game and remove from score board"() {
+    def "Finish game and remove from score board, returns Game instance"() {
         setup:
         def scoreBoard = ScoreBoards.newSortedScoreBoard()
         def team1 = "Poland"
         def team2 = "Brazil"
-        scoreBoard.startGame(team1, team2)
+        startGameWithScore(scoreBoard, team1, team2, 2, 3)
 
         when:
-        scoreBoard.finishGame(team1, team2)
+        def game = scoreBoard.finishGame(team1, team2)
 
         then:
         scoreBoard.activeGames.isEmpty()
+        game.homeTeamPoints == 2
+        game.awayTeamPoints == 3
     }
 
     def "Active games are sorted by score descending"() {
