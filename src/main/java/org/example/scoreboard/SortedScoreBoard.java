@@ -38,6 +38,10 @@ public class SortedScoreBoard implements ScoreBoard{
         activeGames.remove(Game.ofTeams(homeTeam, awayTeam));
     }
 
+    public String summary() {
+        return "";
+    }
+
     private LinkedHashSet<Game> sortedGames() {
         List<Game> activeGamesList = Lists.newArrayList(activeGames);
         Collections.reverse(activeGamesList);

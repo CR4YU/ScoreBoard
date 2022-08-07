@@ -84,7 +84,7 @@ class SortedScoreBoardSpec extends Specification {
         def scoreBoard = ScoreBoards.newSortedScoreBoard()
 
         then:
-        scoreBoard.summary.isEmpty()
+        scoreBoard.summary().isEmpty()
     }
 
     void startGameWithScore(ScoreBoard scoreBoard, homeTeam, awayTeam, homeTeamPoints, awayTeamPoints) {
