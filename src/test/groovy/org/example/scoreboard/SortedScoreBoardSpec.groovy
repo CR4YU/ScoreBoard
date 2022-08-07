@@ -87,6 +87,28 @@ class SortedScoreBoardSpec extends Specification {
         scoreBoard.summary().isEmpty()
     }
 
+    def "Return sorted summary for multiple games" () {
+        setup:
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
+        startGameWithScore(scoreBoard, "Mexico", "Canada", 0, 5)
+        startGameWithScore(scoreBoard, "Spain", "Brazil", 10, 2)
+        startGameWithScore(scoreBoard, "Germany", "France", 2, 2)
+        startGameWithScore(scoreBoard, "Uruguay", "Italy", 6, 6)
+        startGameWithScore(scoreBoard, "Argentina", "Australia", 3, 1)
+
+        when:
+        def summary = scoreBoard.summary()
+
+        then:
+        summary == """\
+                        1. Uruguay 6 - Italy 6
+                        2. Spain 10 - Brazil 2
+                        3. Mexico 0 - Canada 5
+                        4. Argentina 3 - Australia 1
+                        5. Germany 2 - France 2
+                        """.stripIndent()
+    }
+
     void startGameWithScore(ScoreBoard scoreBoard, homeTeam, awayTeam, homeTeamPoints, awayTeamPoints) {
         scoreBoard.startGame(homeTeam, awayTeam)
         scoreBoard.updateGame(homeTeam, awayTeam, homeTeamPoints, awayTeamPoints)
