@@ -31,6 +31,10 @@ public class Game {
         this.awayTeamPoints = awayTeamPoints;
     }
 
+    public int pointsSum() {
+        return homeTeamPoints + awayTeamPoints;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

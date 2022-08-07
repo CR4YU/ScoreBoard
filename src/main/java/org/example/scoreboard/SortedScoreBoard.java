@@ -1,20 +1,22 @@
 package org.example.scoreboard;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class SortedScoreBoard implements ScoreBoard{
 
-    private final Set<Game> activeGames;
+    private final LinkedHashSet<Game> activeGames;
 
     public SortedScoreBoard() {
-        activeGames = Sets.newHashSet();
+        activeGames = Sets.newLinkedHashSet();
     }
 
     @Override
     public Set<Game> getActiveGames() {
-        return activeGames;
+        return sortedGames();
     }
 
     @Override
@@ -34,5 +36,13 @@ public class SortedScoreBoard implements ScoreBoard{
     @Override
     public void finishGame(String homeTeam, String awayTeam) {
         activeGames.remove(Game.ofTeams(homeTeam, awayTeam));
+    }
+
+    private LinkedHashSet<Game> sortedGames() {
+        List<Game> activeGamesList = Lists.newArrayList(activeGames);
+        Collections.reverse(activeGamesList);
+        return activeGamesList.stream()
+                .sorted(Comparator.comparingInt(Game::pointsSum).reversed())
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 }
