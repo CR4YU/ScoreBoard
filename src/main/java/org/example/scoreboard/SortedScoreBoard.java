@@ -6,7 +6,7 @@ import com.google.common.collect.Sets;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class SortedScoreBoard implements ScoreBoard{
+public class SortedScoreBoard implements ScoreBoardWithSummary {
 
     private final LinkedHashSet<Game> activeGames;
 
@@ -43,6 +43,7 @@ public class SortedScoreBoard implements ScoreBoard{
                 .orElseThrow();
     }
 
+    @Override
     public String summary() {
         StringBuilder sb = new StringBuilder();
         int i = 1;
