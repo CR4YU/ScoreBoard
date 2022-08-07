@@ -20,8 +20,8 @@ public class SortedScoreBoard implements ScoreBoard{
     }
 
     @Override
-    public void startGame(String homeTeam, String awayTeam) {
-        activeGames.add(Game.ofTeams(homeTeam, awayTeam));
+    public boolean startGame(String homeTeam, String awayTeam) {
+        return activeGames.add(Game.ofTeams(homeTeam, awayTeam));
     }
 
     @Override
