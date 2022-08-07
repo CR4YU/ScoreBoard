@@ -49,7 +49,7 @@ class GameSpec extends Specification {
         !game1.is(game2)
     }
 
-    def "Assign points to teams"() {
+    def "Assign points to teams, pointsSum() returns sum"() {
         setup:
         def game = Game.ofTeams("Poland", "Brazil")
 
@@ -59,5 +59,6 @@ class GameSpec extends Specification {
         then:
         game.homeTeamPoints == 1
         game.awayTeamPoints == 2
+        game.pointsSum() == 3
     }
 }
