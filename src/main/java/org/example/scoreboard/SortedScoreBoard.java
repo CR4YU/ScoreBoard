@@ -10,7 +10,7 @@ public class SortedScoreBoard implements ScoreBoardWithSummary {
 
     private final LinkedHashSet<Game> activeGames;
 
-    public SortedScoreBoard() {
+    SortedScoreBoard() {
         activeGames = Sets.newLinkedHashSet();
     }
 
