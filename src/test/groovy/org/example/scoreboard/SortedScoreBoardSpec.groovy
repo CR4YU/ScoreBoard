@@ -77,6 +77,7 @@ class SortedScoreBoardSpec extends Specification {
 
         then:
         scoreBoard.activeGames.isEmpty()
+        game == Game.ofTeams(team1, team2)
         game.homeTeamPoints == 2
         game.awayTeamPoints == 3
     }

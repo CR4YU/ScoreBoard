@@ -26,21 +26,21 @@ public class SortedScoreBoard implements ScoreBoard{
 
     @Override
     public void updateGame(String homeTeam, String awayTeam, int homeTeamPoints, int awayTeamPoints) {
-        activeGames.stream()
-                .filter(game -> game.equals(Game.ofTeams(homeTeam, awayTeam)))
-                .findAny()
-                .orElseThrow()
-                .setPoints(homeTeamPoints, awayTeamPoints);
+        findGameOrThrow(homeTeam, awayTeam).setPoints(homeTeamPoints, awayTeamPoints);
     }
 
     @Override
     public Game finishGame(String homeTeam, String awayTeam) {
-        Game toRemoved = activeGames.stream()
+        Game toRemoved = findGameOrThrow(homeTeam, awayTeam);
+        activeGames.remove(toRemoved);
+        return toRemoved;
+    }
+
+    private Game findGameOrThrow(String homeTeam, String awayTeam) {
+        return activeGames.stream()
                 .filter(game -> game.equals(Game.ofTeams(homeTeam, awayTeam)))
                 .findAny()
                 .orElseThrow();
-        activeGames.remove(toRemoved);
-        return toRemoved;
     }
 
     public String summary() {
