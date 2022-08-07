@@ -54,6 +54,17 @@ class SortedScoreBoardSpec extends Specification {
         scoreBoard.activeGames[0].awayTeamPoints == 2
     }
 
+    def "Updating non existing game returns NoSuchElementException"() {
+        setup:
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
+
+        when:
+        scoreBoard.updateGame("Poland", "Brazil", 1, 1)
+
+        then:
+        thrown NoSuchElementException
+    }
+
     def "Finish game and remove from score board"() {
         setup:
         def scoreBoard = ScoreBoards.newSortedScoreBoard()
