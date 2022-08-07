@@ -79,6 +79,14 @@ class SortedScoreBoardSpec extends Specification {
         ]
     }
 
+    def "Return empty summary for empty score board" () {
+        when:
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
+
+        then:
+        scoreBoard.summary.isEmpty()
+    }
+
     void startGameWithScore(ScoreBoard scoreBoard, homeTeam, awayTeam, homeTeamPoints, awayTeamPoints) {
         scoreBoard.startGame(homeTeam, awayTeam)
         scoreBoard.updateGame(homeTeam, awayTeam, homeTeamPoints, awayTeamPoints)
