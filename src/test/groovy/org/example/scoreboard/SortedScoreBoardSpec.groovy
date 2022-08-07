@@ -56,4 +56,31 @@ class SortedScoreBoardSpec extends Specification {
         then:
         scoreBoard.activeGames.isEmpty()
     }
+
+    def "Active games are sorted by score descending"() {
+        setup:
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
+        scoreBoard.startGame("Mexico", "Canada")
+        scoreBoard.updateGame("Mexico", "Canada", 0, 5)
+        scoreBoard.startGame("Spain", "Brazil")
+        scoreBoard.updateGame("Spain", "Brazil", 10, 2)
+        scoreBoard.startGame("Germany", "France")
+        scoreBoard.updateGame("Germany", "France", 2, 2)
+        scoreBoard.startGame("Uruguay", "Italy")
+        scoreBoard.updateGame("Uruguay", "Italy", 6, 6)
+        scoreBoard.startGame("Argentina", "Australia")
+        scoreBoard.updateGame("Argentina", "Australia", 3, 1)
+
+        when:
+        def activeGames = scoreBoard.activeGames
+
+        then:
+        activeGames as List == [
+                Game.ofTeams("Uruguay", "Italy"),
+                Game.ofTeams("Spain", "Brazil"),
+                Game.ofTeams("Mexico", "Canada"),
+                Game.ofTeams("Argentina", "Australia"),
+                Game.ofTeams("Germany", "France")
+        ]
+    }
 }
