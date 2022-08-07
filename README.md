@@ -64,3 +64,8 @@ All methods' implementations are simple operations in Set collection.
 - Add more complex object for storing summary. For now, it is a string.
 - Add fields to *Game* to save information about starting time
 - Add method to return game length
+
+### Runnings tests:
+```
+./gradlew test
+```
