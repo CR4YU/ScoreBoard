@@ -27,4 +27,8 @@ public class ScoreBoard {
                 .orElseThrow()
                 .setPoints(homeTeamPoints, awayTeamPoints);
     }
+
+    public void finishGame(String homeTeam, String awayTeam) {
+        activeGames.remove(Game.ofTeams(homeTeam, awayTeam));
+    }
 }
