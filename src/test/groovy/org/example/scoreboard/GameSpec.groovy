@@ -21,6 +21,21 @@ class GameSpec extends Specification {
         }
     }
 
+    def "Creating game with null or empty team name throws exception"() {
+        when:
+        Game.ofTeams(team1,team2)
+
+        then:
+        thrown IllegalArgumentException
+
+        where:
+        team1 | team2
+        "Pol" | ""
+        ""    | "Pol"
+        "Pol" | null
+        null  | "Pol"
+    }
+
     def "Two game instances are equal if teams are the same - eqauls() test"() {
         setup:
         def team1 = "Poland"
