@@ -28,6 +28,17 @@ class SortedScoreBoardSpec extends Specification {
         scoreBoard.activeGames[0].awayTeamPoints == 0
     }
 
+    def "Score boards contains only unique games, should not be able to start non unique"() {
+        setup:
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
+        def team1 = "Poland"
+        def team2 = "Brazil"
+
+        expect:
+        scoreBoard.startGame(team1, team2)
+        !scoreBoard.startGame(team1, team2)
+    }
+
     def "Update game in score board"() {
         setup:
         def scoreBoard = ScoreBoards.newSortedScoreBoard()
