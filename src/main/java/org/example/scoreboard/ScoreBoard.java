@@ -15,4 +15,8 @@ public class ScoreBoard {
     public List<Game> getActiveGames() {
         return activeGames;
     }
+
+    public void startGame(String homeTeam, String awayTeam) {
+        activeGames.add(Game.ofTeams(homeTeam, awayTeam));
+    }
 }
