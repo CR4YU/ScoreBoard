@@ -1,6 +1,7 @@
 package org.example.scoreboard;
 
 import com.google.common.base.Objects;
+import com.google.common.base.Strings;
 
 public class Game {
 
@@ -10,6 +11,9 @@ public class Game {
     private int awayTeamPoints;
 
     private Game(String homeTeam, String awayTeam) {
+        if (Strings.isNullOrEmpty(homeTeam) || Strings.isNullOrEmpty(awayTeam)) {
+            throw new IllegalArgumentException("Team name cannot be empty or null");
+        }
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
     }
