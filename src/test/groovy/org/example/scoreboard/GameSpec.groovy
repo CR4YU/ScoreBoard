@@ -23,10 +23,11 @@ class GameSpec extends Specification {
 
     def "Creating game with null or empty team name throws exception"() {
         when:
-        Game.ofTeams(team1,team2)
+        Game.ofTeams(team1, team2)
 
         then:
-        thrown IllegalArgumentException
+        def e = thrown(IllegalArgumentException)
+        e.message == "Team name cannot be empty or null"
 
         where:
         team1 | team2
