@@ -82,6 +82,17 @@ class SortedScoreBoardSpec extends Specification {
         game.awayTeamPoints == 3
     }
 
+    def "Finishing non existing game returns Exception" () {
+        setup:
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
+
+        when:
+        scoreBoard.finishGame("Poland", "Brazil")
+
+        then:
+        thrown NoSuchElementException
+    }
+
     def "Active games are sorted by score descending"() {
         setup:
         def scoreBoard = ScoreBoards.newSortedScoreBoard()
