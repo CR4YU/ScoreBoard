@@ -2,11 +2,11 @@ package org.example.scoreboard
 
 import spock.lang.Specification
 
-class ScoreBoardSpec extends Specification {
+class SortedScoreBoardSpec extends Specification {
 
     def "Create empty ScoreBoard"() {
         when:
-        def scoreBoard = ScoreBoards.newScoreBoard()
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
 
         then:
         scoreBoard.activeGames.isEmpty()
@@ -14,7 +14,7 @@ class ScoreBoardSpec extends Specification {
 
     def "Start game in ScoreBoard with initial score 0-0"() {
         setup:
-        def scoreBoard = ScoreBoards.newScoreBoard()
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
         def team1 = "Poland"
         def team2 = "Brazil"
 
@@ -30,7 +30,7 @@ class ScoreBoardSpec extends Specification {
 
     def "Update game in score board"() {
         setup:
-        def scoreBoard = ScoreBoards.newScoreBoard()
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
         def team1 = "Poland"
         def team2 = "Brazil"
         scoreBoard.startGame(team1, team2)
@@ -45,7 +45,7 @@ class ScoreBoardSpec extends Specification {
 
     def "Finish game and remove from score board"() {
         setup:
-        def scoreBoard = ScoreBoards.newScoreBoard()
+        def scoreBoard = ScoreBoards.newSortedScoreBoard()
         def team1 = "Poland"
         def team2 = "Brazil"
         scoreBoard.startGame(team1, team2)
