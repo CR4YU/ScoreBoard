@@ -11,4 +11,20 @@ class ScoreBoardSpec extends Specification {
         then:
         scoreBoard.activeGames.isEmpty()
     }
+
+    def "Start game in ScoreBoard with initial score 0-0"() {
+        setup:
+        def scoreBoard = ScoreBoards.newScoreBoard()
+        def team1 = "Poland"
+        def team2 = "Brazil"
+
+        when:
+        scoreBoard.startGame(team1, team2)
+
+        then:
+        scoreBoard.activeGames.size() == 1
+        Game.ofTeams(team1, team2) in scoreBoard.activeGames
+        scoreBoard.activeGames[0].homeTeamPoints == 0
+        scoreBoard.activeGames[0].awayTeamPoints == 0
+    }
 }
