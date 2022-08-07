@@ -42,4 +42,18 @@ class ScoreBoardSpec extends Specification {
         scoreBoard.activeGames[0].homeTeamPoints == 1
         scoreBoard.activeGames[0].awayTeamPoints == 2
     }
+
+    def "Finish game and remove from score board"() {
+        setup:
+        def scoreBoard = ScoreBoards.newScoreBoard()
+        def team1 = "Poland"
+        def team2 = "Brazil"
+        scoreBoard.startGame(team1, team2)
+
+        when:
+        scoreBoard.finishGame(team1, team2)
+
+        then:
+        scoreBoard.activeGames.isEmpty()
+    }
 }
