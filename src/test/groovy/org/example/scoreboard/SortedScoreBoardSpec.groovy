@@ -37,6 +37,7 @@ class SortedScoreBoardSpec extends Specification {
         expect:
         scoreBoard.startGame(team1, team2)
         !scoreBoard.startGame(team1, team2)
+        !scoreBoard.startGame(team2, team1)
     }
 
     def "Update game in score board"() {
