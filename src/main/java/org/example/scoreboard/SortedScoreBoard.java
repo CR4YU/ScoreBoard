@@ -21,6 +21,9 @@ public class SortedScoreBoard implements ScoreBoardWithSummary {
 
     @Override
     public boolean startGame(String homeTeam, String awayTeam) {
+        if (activeGames.contains(Game.ofTeams(awayTeam, homeTeam))) {
+            return false;
+        }
         return activeGames.add(Game.ofTeams(homeTeam, awayTeam));
     }
 
