@@ -61,4 +61,22 @@ class GameSpec extends Specification {
         game.awayTeamPoints == 2
         game.pointsSum() == 3
     }
+
+    def "Throws exception when updating game with negative value"() {
+        setup:
+        def game = Game.ofTeams("Poland", "Brazil")
+
+        when:
+        game.setPoints(homeTeamPoints, awayTeamPoints)
+
+        then:
+        def e = thrown(IllegalArgumentException)
+        e.message == "Points value negative"
+
+        where:
+        homeTeamPoints | awayTeamPoints
+        2              | -1
+        -1             | 2
+        -1             | -1
+    }
 }
