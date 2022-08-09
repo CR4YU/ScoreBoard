@@ -39,6 +39,9 @@ public class Game {
     }
 
     void setPoints(int homeTeamPoints, int awayTeamPoints) {
+        if (homeTeamPoints < 0 || awayTeamPoints < 0) {
+            throw new IllegalArgumentException("Points value negative");
+        }
         this.homeTeamPoints = homeTeamPoints;
         this.awayTeamPoints = awayTeamPoints;
     }
