@@ -59,11 +59,17 @@ The collection contains Game instances where every Game object keeps information
 
 All methods' implementations are simple operations in Set collection.
 
+### Assumptions
+- Points cannot be less than 0
+- Points can be updated by any value, subsequent changes can "subtract"
+- Matches of teams A,B and B,A cannot be at the same time
+
 ### Possible improvements:
 - Care about concurrent updates. Race condition is possible.
 - Add more complex object for storing summary. For now, it is a string.
 - Add fields to *Game* to save information about starting time
 - Add method to return game length
+- Add technical and business validation of teams names
 
 ### Runnings tests:
 ```
